@@ -87,15 +87,15 @@ pip install torch==2.6.0 torchvision==0.21.0 torchaudio==2.6.0 --index-url https
       * `finetune_gemma27b.py`: An example script for finetuning a Gemma 2.7B model on the MapTrace dataset.
       Example usage:
 
-      ``bash
+      ```bash
       accelerate launch --config_file fsdp_config.yaml finetune_gemma27b.py --output_dir /path/to/output --train_path_dir /path/to/processed/training/data
-      ``
+      ```
 
       * `hf_inference.py`, `vllm_inference.py`: Inference scripts to evaluate finetuned models on the **[MapBench](https://github.com/taco-group/MapBench)** benchmark, using either Hugging Face Transformers or `vllm`. Example usage:
 
-      ``bash
+      ```bash
       python vllm_inference.py --model_id /hf/model/id --lora_adapter_path /path/to/ft/model --precision 4 --output_path /path/to/output/directory --parquet_file /path/to/mapbench/data --annotations_path /path/to/mapbench/graph/folder
-      ``
+      ```
 
 ### Usage Instructions
 

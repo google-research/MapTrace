@@ -41,6 +41,7 @@ The dataset is provided in two distinct parts:
 
   * **`maptrace_parquet`**: Contains paths on more complex, stylized maps, such as those found in brochures, park directories, or shopping malls.
   * **`floormap_parquet`**: Contains paths on simpler, structured floor maps, typical of office buildings, apartment complexes, or campus maps.
+  * **`maptrace_20k`**: Contains the path of the initial dataset used in the paper. The data is already postprocessed and do not require further processing for training.
 
 The full dataset is hosted on Huggingface in Parquet format. Access it [here](https://huggingface.co/datasets/google/MapTrace/). The total size of the dataset including images and text is 210GB.
 

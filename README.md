@@ -8,8 +8,8 @@ This repository contains the dataset and code for **MapTrace**, a large-scale sy
 
 -----
 
-
 ## Motivation
+
 <div>
 <p align="center">
 <img src="assets/maptrace_overview_v2.png" width="600px">
@@ -67,12 +67,12 @@ Each row in the Parquet files contains the following fields:
     source .venv/bin/activate
     ```
 
-3.  **Install pytorch:**
+2.  **Install pytorch:**
 Ensure that you use the CUDA version compatible with your environment. Experiments were conducted with CUDA 12.4.
 
-``bash
-pip install torch==2.6.0 torchvision==0.21.0 torchaudio==2.6.0 --index-url https://download.pytorch.org/whl/cu124
-``
+    ```bash
+    pip install torch==2.6.0 torchvision==0.21.0 torchaudio==2.6.0 --index-url https://download.pytorch.org/whl/cu124
+    ```
 
 3.  **Install the required packages:**
 
@@ -82,20 +82,30 @@ pip install torch==2.6.0 torchvision==0.21.0 torchaudio==2.6.0 --index-url https
 
 ### Code Structure
 
-  * **`src/`**
-      * `postprocess_data.py`: A utility script to preprocess the data into the format required for finetuning.
-      * `finetune_gemma27b.py`: An example script for finetuning a Gemma 2.7B model on the MapTrace dataset.
-      Example usage:
+- `src/`
+  - `postprocess_data.py` — Utility to preprocess raw dataset folders into finetuning-ready Parquet files (postprocessing, cleaning, and formatting).
+  - `finetune_gemma27b.py` — Example finetuning script for Gemma 2.7B. Demonstrates dataset loading, training loop configuration, and integration with Accelerate/FSDP.
+  - `hf_inference.py` — Inference script using Hugging Face Transformers to evaluate finetuned models on MapBench.
+  - `vllm_inference.py` — Inference script using vLLM to evaluate finetuned models on MapBench.
+  - `requirements.txt` — Python dependencies used by the scripts.
 
-      ```bash
-      accelerate launch --config_file fsdp_config.yaml finetune_gemma27b.py --output_dir /path/to/output --train_path_dir /path/to/processed/training/data
-      ```
+Example: finetuning command (using accelerate)
+```bash
+accelerate launch --config_file fsdp_config.yaml src/finetune_gemma27b.py \
+  --output_dir /path/to/output \
+  --train_path_dir /path/to/processed/training/data
+```
 
-      * `hf_inference.py`, `vllm_inference.py`: Inference scripts to evaluate finetuned models on the **[MapBench](https://github.com/taco-group/MapBench)** benchmark, using either Hugging Face Transformers or `vllm`. Example usage:
-
-      ```bash
-      python vllm_inference.py --model_id /hf/model/id --lora_adapter_path /path/to/ft/model --precision 4 --output_path /path/to/output/directory --parquet_file /path/to/mapbench/data --annotations_path /path/to/mapbench/graph/folder
-      ```
+Example: vLLM inference
+```bash
+python src/vllm_inference.py \
+  --model_id /hf/model/id \
+  --lora_adapter_path /path/to/ft/model \
+  --precision 4 \
+  --output_path /path/to/output/directory \
+  --parquet_file /path/to/mapbench/data \
+  --annotations_path /path/to/mapbench/graph/folder
+```
 
 ### Usage Instructions
 

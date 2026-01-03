@@ -120,7 +120,15 @@ python src/vllm_inference.py \
 If you use the MapTrace dataset or code in your research, please cite our paper:
 
 ```bibtex
-@inproceedings{TBD}
+@misc{panagopoulou2025maptracescalabledatageneration,
+      title={MapTrace: Scalable Data Generation for Route Tracing on Maps}, 
+      author={Artemis Panagopoulou and Aveek Purohit and Achin Kulshrestha and Soroosh Yazdani and Mohit Goyal},
+      year={2025},
+      eprint={2512.19609},
+      archivePrefix={arXiv},
+      primaryClass={cs.CV},
+      url={https://arxiv.org/abs/2512.19609}, 
+}
 ```
 
 ```

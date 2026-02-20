@@ -4,7 +4,7 @@ This repository contains the dataset and code for **MapTrace**, a large-scale sy
 
 **Paper:** "MapTrace: Scalable Data Generation for Route Tracing on Maps"
 
-**Paper Link:** [here](TBD)
+**Paper Link:** [here](https://arxiv.org/abs/2512.19609)
 
 -----
 
